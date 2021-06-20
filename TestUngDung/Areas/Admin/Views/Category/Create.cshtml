@@ -1,0 +1,49 @@
+﻿@model ModelEF.EF.Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <i class="fa fa-save"></i>&nbsp;Thêm Mới Thể Loại
+}
+
+@using (Html.BeginForm("Create", "Category", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-lg-12" form-group>
+            <div class="col-md-6">
+                @Html.ActionLink("Quay lai", "Index", "Category", new { @class = "btn btn-primary" })
+            </div>
+        </div>
+
+        <div class="col-lg-12" form-group>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Mời nhập tên đăng nhập" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control", @placeholder = "Mời nhập Mô Tả" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Tạo mới" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
